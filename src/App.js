@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import Form from "@rjsf/core"
+import Form from '@rjsf/core';
+import yaml from 'js-yaml';
 
 
 const schema = {
@@ -73,7 +74,39 @@ const uischema = {
 }
 
 const log = (type) => console.log.bind(console, type);
-const onSubmit = ({formData}, e) => console.log("Data submitted: ",  JSON.stringify(formData));
+//const onSubmit = ({formData}, e) => console.log("Data submitted: ",  JSON.stringify(formData));
+
+function onSubmit({formData}, e) {
+	var x = {};
+	for (let group in formData) {
+		for (let k in formData[group]) {
+			var splits = k.split(".");
+			var reverse = k.split(".").slice(1);
+			var q = formData[group][k];
+			var topLevel = splits[0];
+		  if (reverse.length > 0) {
+				if (!(topLevel in x)) {
+					x[topLevel] = {};
+				}
+				var p = x[topLevel];
+		 	 	for (let t of reverse.slice(0,-1)) {
+					if (!(t in p)) {
+						p[t] = {};
+					} 
+					p = p[t];
+				}
+				p[reverse.slice(-1)] = q;
+			} else {
+				x[topLevel] = q;
+		}
+		
+		console.log(reverse);
+		}
+	}
+	var yamlStr = yaml.safeDump(x);
+	
+	console.log(yamlStr);
+}
 
 
 class App extends React.Component {
