@@ -81,30 +81,18 @@ function onSubmit({formData}, e) {
 	for (let group in formData) {
 		for (let k in formData[group]) {
 			var splits = k.split(".");
-			var reverse = k.split(".").slice(1);
 			var q = formData[group][k];
-			var topLevel = splits[0];
-		  if (reverse.length > 0) {
-				if (!(topLevel in x)) {
-					x[topLevel] = {};
+			var p = x;
+			for (let t of splits.slice(0,-1) ) {
+				if (!(t in p)) {
+					p[t] = {};
 				}
-				var p = x[topLevel];
-		 	 	for (let t of reverse.slice(0,-1)) {
-					if (!(t in p)) {
-						p[t] = {};
-					} 
-					p = p[t];
-				}
-				p[reverse.slice(-1)] = q;
-			} else {
-				x[topLevel] = q;
-		}
-		
-		console.log(reverse);
+				p = p[t];
+			}
+			p[splits.slice(-1)] = q;
 		}
 	}
-	var yamlStr = yaml.safeDump(x);
-	
+	var yamlStr = yaml.safeDump(x)
 	console.log(yamlStr);
 }
 
