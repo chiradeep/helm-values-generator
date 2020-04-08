@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import Form from '@rjsf/core';
 import yaml from 'js-yaml';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+
 
 
 const schema = {
@@ -12,7 +14,7 @@ const schema = {
 			required: ["nsIp"],
 			properties: {
 				nsIp: {type: "string", title: "Citrix ADC IP"},
-				nsPort: {type: "string", title: "ADC Port",  default: "443"},
+				nsPort: {type: "number", title: "ADC Port",  default: 443},
 				nsVIP: {type: "string", title: "Virtual IP for the clients to connect to", },
 				nsProtocol: {type: "string", title: "ADC Management Protocol", default: "HTTPS"},
 				nsNamespace: {type: "string", title: "ADC Entity Prefix"},
@@ -76,7 +78,7 @@ const uischema = {
 const log = (type) => console.log.bind(console, type);
 //const onSubmit = ({formData}, e) => console.log("Data submitted: ",  JSON.stringify(formData));
 
-function onSubmit({formData}, e) {
+/*function onSubmit({formData}, e) {
 	var x = {};
 	for (let group in formData) {
 		for (let k in formData[group]) {
@@ -94,23 +96,58 @@ function onSubmit({formData}, e) {
 	}
 	var yamlStr = yaml.safeDump(x)
 	console.log(yamlStr);
-}
+}*/
 
 
 class App extends React.Component {
+	constructor(props){
+		super(props);
+		this.state = {yamlStr: ' '};
+		this.toYaml = this.toYaml.bind(this);
+	}
+
+	componentDidMount() {
+
+	}
+
+	toYaml({formData}, e) {
+		var x = {};
+		for (let group in formData) {
+			for (let k in formData[group]) {
+				var splits = k.split(".");
+				var q = formData[group][k];
+				var p = x;
+				for (let t of splits.slice(0,-1) ) {
+					if (!(t in p)) {
+						p[t] = {};
+					}
+					p = p[t];
+				}
+				p[splits.slice(-1)] = q;
+			}
+		}
+		var yamlStr = yaml.safeDump(x)
+		console.log(yamlStr);
+		this.setState({yamlStr: yamlStr});
+	}
+
 	render() {
 	  return (
-		  <div className="col-sm-8">
+		  <div className="col-sm-12">
 		 		<div className="row">
-				 <div className="col-sm-8">
-				 </div>
-		  		<div className="col-sm-8">
+		  		<div className="col-sm-4">
               <Form schema={schema}
 		            		uiSchema={uischema}
                     onChange={log("changed")}
-                    onSubmit={onSubmit}
+                    onSubmit={this.toYaml}
                     onError={log("errors")} />
 		  		</div>
+					<div className="col-sm-6">
+						<h4>Values.yaml</h4>
+						<SyntaxHighlighter language="yaml">
+     					 {this.state.yamlStr}
+    				</SyntaxHighlighter>
+				  </div>
 		  	</div>
 		  </div>
 	  );
