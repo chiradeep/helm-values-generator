@@ -154,18 +154,17 @@ class App extends React.Component {
       						<button type="submit" className="btn btn-primary">Generate values.yaml</button> 
 						</div>
 					</Form>
-					<Divider orientation="vertical" flexItem/>
 		  		</Grid>
-				<Grid item><Divider orientation="vertical" flexItem/></Grid>
+			    <Divider orientation="vertical" flexItem/>
 				<Grid item sm={6}>
 					<Box p="1.5rem" color="grey">
-					<Typography variant="h5">Values.yaml</Typography>
-					<Divider />
+						<Typography variant="h5">Values.yaml</Typography>
+						<Divider />
 					</Box>
 					<Box p="1.5rem" >
-					<SyntaxHighlighter language="yaml">
-     					 {this.state.yamlStr}
-    				</SyntaxHighlighter>
+						<SyntaxHighlighter language="yaml">
+     						 {this.state.yamlStr}
+    					</SyntaxHighlighter>
 					</Box>
 				</Grid>
 		  </Grid>
