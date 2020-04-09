@@ -44,10 +44,32 @@ const schema = {
 			type: "object",
 			title: "Citrix ADC Metrics Exporter Settings",
 			properties: {
-				'exporter.required': {type: "boolean", title: "Exporter Required", default: true},
-				'exporter.image': {type: "string", title: "Citrix ADC Metrics Exporter Image", default:'quay.io/citrix/citrix-adc-metrics-exporter:1.4.0'},
-				'exporter.pullpolicy': {type: "string", default: "IfNotPresent", title: "Image Pull Policy", enum: ["Always", "IfNotPresent", "Never"]},
-				'exporter.ports.containerPort': {type: "number", title: "Exporter Container Port", default: 8888, minimum:1, maximum:64000}
+				'exporter.required': {type: "boolean", title: "Exporter Required"},
+				
+			},
+			dependencies: {
+				'exporter.required': {
+					oneOf: [
+						{
+							"properties": {
+							  "exporter.required": {
+								const: false
+							  }
+							}
+						},
+						{
+							"properties": {
+							  "exporter.required": {
+								const: true
+							},
+							'exporter.image': {type: "string", title: "Citrix ADC Metrics Exporter Image", default:'quay.io/citrix/citrix-adc-metrics-exporter:1.4.0'},
+							'exporter.pullpolicy': {type: "string", default: "IfNotPresent", title: "Image Pull Policy", enum: ["Always", "IfNotPresent", "Never"]},
+							'exporter.ports.containerPort': {type: "number", title: "Exporter Container Port", default: 8888, minimum:1, maximum:64000}		
+							}
+						}
+					]
+					
+				}
 			}
 		}
 	},
@@ -85,12 +107,8 @@ class App extends React.Component {
 		this.toYaml = this.toYaml.bind(this);
 	}
 
-	componentDidMount() {
-
-	}
-
 	toYaml({formData}) {
-		//console.log({formData});
+		console.log({formData});
 
 		var x = {};
 		for (let group in formData) {
@@ -109,10 +127,12 @@ class App extends React.Component {
 				}
 			}
 		}
-		var yamlStr = yaml.safeDump(x)
+		if (!formData.exporterSettings['exporter.required']) {
+			delete x.exporter;
+		}
+		var yamlStr = yaml.safeDump(x);
 		//console.log(yamlStr);
-		this.setState({formData: {...this.state.formData, 
-			...formData}, yamlStr: yamlStr});
+		this.setState({formData: {...formData}, yamlStr: yamlStr});
 	}
 
 	render() {
@@ -123,6 +143,7 @@ class App extends React.Component {
 					<Form schema={schema}
 						  formData={this.state.formData}
 						  liveValidate={true}
+						  showErrorList={false}
 						  uiSchema={uischema}
                           onChange={this.toYaml}
                           onSubmit={this.toYaml}
