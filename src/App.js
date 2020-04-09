@@ -1,8 +1,11 @@
 import React from 'react';
 import './App.css';
-import Form from '@rjsf/core';
+//import Form from '@rjsf/core';
+import Form from "@rjsf/material-ui";
 import yaml from 'js-yaml';
 import SyntaxHighlighter from 'react-syntax-highlighter';
+import Divider from '@material-ui/core/Divider';
+import { Typography, Grid, Box } from '@material-ui/core';
 
 
 
@@ -26,7 +29,7 @@ const schema = {
 			type: "object",
 			title: "Deployment Settings",
 			properties: {
-				'kubernetesURL': {type: "string", title: "Kubernetes API-server URL", format:"uri"},
+				'kubernetesURL': {type: "string", title: "Kubernetes API-server URL", format:"url"},
 				'license.accept': {type: "boolean", title: "Accept License", default: false},
 				'ingressClass': {type: "string", title: "Ingress Class for the controller"},
 				'logLevel': {type: "string", default: "DEBUG", title: "Ingress Controller Log Level", enum:["DEBUG", "INFO", "WARN", "ERROR", "TRACE"]},
@@ -137,9 +140,8 @@ class App extends React.Component {
 
 	render() {
 	  return (
-		  <div className="col-sm-12">
-		 		<div className="row">
-		  		<div className="col-sm-4">
+		  <Grid container direction="row" justify="center" alignItems="flex-start" spacing={3}>
+		  		<Grid item sm={4}>
 					<Form schema={schema}
 						  formData={this.state.formData}
 						  liveValidate={true}
@@ -151,16 +153,22 @@ class App extends React.Component {
 						<div>
       						<button type="submit" className="btn btn-primary">Generate values.yaml</button> 
 						</div>
-						</Form>
-		  		</div>
-					<div className="col-sm-6">
-						<h4>Values.yaml</h4>
-						<SyntaxHighlighter language="yaml">
+					</Form>
+					<Divider orientation="vertical" flexItem/>
+		  		</Grid>
+				<Grid item><Divider orientation="vertical" flexItem/></Grid>
+				<Grid item sm={6}>
+					<Box p="1.5rem" color="grey">
+					<Typography variant="h5">Values.yaml</Typography>
+					<Divider />
+					</Box>
+					<Box p="1.5rem" >
+					<SyntaxHighlighter language="yaml">
      					 {this.state.yamlStr}
     				</SyntaxHighlighter>
-				  </div>
-		  	</div>
-		  </div>
+					</Box>
+				</Grid>
+		  </Grid>
 	  );
 	}
 }
