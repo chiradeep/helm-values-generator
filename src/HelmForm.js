@@ -50,7 +50,7 @@ class HelmForm extends React.Component {
 
 	render() {
 	  return (
-		  <Grid container direction="row" justify="center" alignItems="flex-start" spacing={3}>
+		  <Grid container direction="row" justify="space-around" alignItems="flex-start" spacing={1}>
 		  		<Grid item sm={6}>
 					<Form schema={this.props.schema}
 						  formData={this.state.formData}
@@ -66,7 +66,7 @@ class HelmForm extends React.Component {
 					</Form>
 		  		</Grid>
 			    <Divider orientation="vertical" flexItem/>
-				<Grid item sm={4}>
+				<Grid item sm={5}>
 					<Box p="1.5rem" color="grey">
 						<Typography variant="h5">Values.yaml</Typography>
 						<Divider />

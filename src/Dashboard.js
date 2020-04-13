@@ -125,7 +125,7 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const items = ['Citrix ADC in Tier 1', 'Citrix ADC CPX in Tier 2', 'Citrix ADC as Istio Ingress Gateway', 'Citrix ADC CPX as Istio Sidecar'];
+  const items = ['Citrix ADC in Tier 1', 'CPX in Tier 2', 'Istio Ingress Gateway', 'CPX as Istio Sidecar'];
 
   
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
@@ -137,28 +137,28 @@ export default function Dashboard() {
 
   const form1 = (
         <Paper className={fixedHeightPaper}>
-        <Typography color="primary">{items[0]}</Typography>
+        <Typography variant="h5" color="primary">{items[0]}</Typography>
           <HelmForm schema={tier1schema}  uischema={tier1uischema}/>
         </Paper>
   );
 
   const form2 = (
       <Paper className={fixedHeightPaper}>
-        <Typography color="primary">{items[1]}</Typography>
+        <Typography variant="h5" color="primary">{items[1]}</Typography>
         <HelmForm schema={tier1schema}  uischema={tier1uischema}/>
       </Paper>
   );
 
   const form3 = (
         <Paper className={fixedHeightPaper}>
-          <Typography color="primary">{items[2]}</Typography>
+          <Typography variant="h5" color="primary">{items[2]}</Typography>
           <HelmForm schema={tier1schema}  uischema={tier1uischema}/>
         </Paper>
   );
 
   const form4 = (
     <Paper className={fixedHeightPaper}>
-      <Typography color="primary">{items[3]}</Typography>
+      <Typography variant="h5" color="primary">{items[3]}</Typography>
       <HelmForm schema={tier1schema}  uischema={tier1uischema}/>
     </Paper>
 );
@@ -194,7 +194,7 @@ export default function Dashboard() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Citrix Helm Charts
+            Citrix Helm Charts Values Generator
           </Typography>
         </Toolbar>
       </AppBar>

@@ -12,9 +12,7 @@ class SidebarItems extends React.Component {
           {this.props.items.map(((item) => {
             return (
               <ListItem button onClick={(e) => this.props.onClick(item, e)}>
-              <ListItemIcon>
-                <DashboardIcon />
-              </ListItemIcon>
+
               <ListItemText primary={item} />
             </ListItem>
             );
