@@ -19,6 +19,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import SidebarItems from './SidebarItems';
 import HelmForm from './HelmForm';
 import { tier1schema, tier1uischema } from './chart-tier-1';
+import { cpxcicschema, cpxcicuischema } from './cpx-cic';
+
 
 
 function Copyright() {
@@ -157,10 +159,11 @@ export default function Dashboard() {
     switch (formId) {
       case items[0]:
         return tier1schema;
+      case items[1]:
+        return cpxcicschema;
       default:
         return tier1schema;
     }
-    return tier1schema;
   }
 
   const uischemaForForm = (formId) => {
@@ -168,10 +171,11 @@ export default function Dashboard() {
     switch (formId) {
       case items[0]:
         return tier1uischema;
+      case items[1]:
+        return cpxcicuischema;
       default:
         return tier1uischema;
     }
-    return tier1uischema;
   }
 
   const MainContent = ({formId, formData, yamlStr}) => {
