@@ -5,6 +5,8 @@ import Form from "@rjsf/material-ui";
 import yaml from 'js-yaml';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import Divider from '@material-ui/core/Divider';
+import Button from '@material-ui/core/Button';
+
 import { Typography, Grid, Box } from '@material-ui/core';
 
 
@@ -49,7 +51,7 @@ class HelmForm extends React.Component {
 	render() {
 	  return (
 		  <Grid container direction="row" justify="center" alignItems="flex-start" spacing={3}>
-		  		<Grid item sm={4}>
+		  		<Grid item sm={6}>
 					<Form schema={this.props.schema}
 						  formData={this.state.formData}
 						  liveValidate={true}
@@ -59,12 +61,12 @@ class HelmForm extends React.Component {
                           onSubmit={this.toYaml}
                           onError={log("errors")}>
 						<div>
-      						<button type="submit" className="btn btn-primary">Generate values.yaml</button> 
+      						<Button type="submit" variant="contained" color="primary">Generate values.yaml</Button> 
 						</div>
 					</Form>
 		  		</Grid>
 			    <Divider orientation="vertical" flexItem/>
-				<Grid item sm={6}>
+				<Grid item sm={4}>
 					<Box p="1.5rem" color="grey">
 						<Typography variant="h5">Values.yaml</Typography>
 						<Divider />
