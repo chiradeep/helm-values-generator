@@ -189,15 +189,6 @@ export default function Dashboard() {
 
     } 
 
- /* const MainContent = () => {
-    return (
-      <Paper className={fixedHeightPaper}>
-      </Paper>
-    );
-
-  }
-  */
-
   return (
     <div className={classes.root}>
       <CssBaseline />
