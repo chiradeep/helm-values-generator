@@ -193,7 +193,7 @@ export default function Dashboard() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+          <Typography component="h2" variant="h6" color="inherit" noWrap className={classes.title}>
             Citrix Helm Charts Values Generator
           </Typography>
         </Toolbar>
