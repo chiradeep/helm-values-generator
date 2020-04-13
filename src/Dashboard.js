@@ -120,7 +120,7 @@ export default function Dashboard() {
   const items = ['Citrix ADC in Tier 1', 'CPX in Tier 2', 'Istio Ingress Gateway', 'CPX as Istio Sidecar'];
 
   const [open, setOpen] = React.useState(true);
-  const [itemId, setItemId] = React.useState('Citrix ADC in Tier 1');
+  const [formId, setformId] = React.useState('Citrix ADC in Tier 1');
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -132,7 +132,7 @@ export default function Dashboard() {
 
   const itemClick = (itemName, e) => {
     console.log("Clicked on " + itemName);
-    setItemId(itemName);
+    setformId(itemName);
   }
 
   const [formData] = React.useState({[items[0]]: {}, [items[1]]: {}, [items[2]]: {}, [items[3]]: {}});
@@ -153,16 +153,16 @@ export default function Dashboard() {
   }
 
 
-const MainContent = ({itemId, formData, yamlStr}) => {
+const MainContent = ({formId, formData, yamlStr}) => {
     return (
       <Paper className={fixedHeightPaper}>
-        <Typography variant="h5" color="primary">{itemId}</Typography>
+        <Typography variant="h5" color="primary">{formId}</Typography>
         <HelmForm schema={tier1schema}  
-                uischema={tier1uischema} 
-                formId={itemId}
-                formData={formData} 
-                yamlStr={yamlStr}
-                setParentState={setParentState}/>
+                  uischema={tier1uischema} 
+                  formId={formId}
+                  formData={formData} 
+                  yamlStr={yamlStr}
+                  setParentState={setParentState}/>
       </Paper>
     );
 
@@ -216,9 +216,9 @@ const MainContent = ({itemId, formData, yamlStr}) => {
         <Container  className={classes.container}>
           <Grid container spacing={3}>
             <MainContent
-              itemId={itemId}
-              formData={formData[itemId]}
-              yamlStr={yamlStrs[itemId]}
+              formId={formId}
+              formData={formData[formId]}
+              yamlStr={yamlStrs[formId]}
               setParentState={setParentState}
             />
           </Grid>
