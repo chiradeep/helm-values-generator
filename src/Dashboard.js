@@ -152,21 +152,42 @@ export default function Dashboard() {
     console.log("Yaml: ",  yamlStrs[formId]);
   }
 
+  const schemaForForm = (formId) => {
+    //TODO
+    switch (formId) {
+      case items[0]:
+        return tier1schema;
+      default:
+        return tier1schema;
+    }
+    return tier1schema;
+  }
 
-const MainContent = ({formId, formData, yamlStr}) => {
-    return (
-      <Paper className={fixedHeightPaper}>
-        <Typography variant="h5" color="primary">{formId}</Typography>
-        <HelmForm schema={tier1schema}  
-                  uischema={tier1uischema} 
-                  formId={formId}
-                  formData={formData} 
-                  yamlStr={yamlStr}
-                  setParentState={setParentState}/>
-      </Paper>
-    );
+  const uischemaForForm = (formId) => {
+    //TODO
+    switch (formId) {
+      case items[0]:
+        return tier1uischema;
+      default:
+        return tier1uischema;
+    }
+    return tier1uischema;
+  }
 
-  } 
+  const MainContent = ({formId, formData, yamlStr}) => {
+      return (
+        <Paper className={fixedHeightPaper}>
+          <Typography variant="h5" color="primary">{formId}</Typography>
+          <HelmForm schema={schemaForForm(formId)}  
+                    uischema={uischemaForForm(formId)} 
+                    formId={formId}
+                    formData={formData} 
+                    yamlStr={yamlStr}
+                    setParentState={setParentState}/>
+        </Paper>
+      );
+
+    } 
 
  /* const MainContent = () => {
     return (
