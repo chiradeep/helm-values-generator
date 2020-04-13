@@ -125,6 +125,8 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const items = ['Citrix ADC in Tier 1', 'Citrix ADC CPX in Tier 2', 'Citrix ADC as Istio Ingress Gateway', 'Citrix ADC CPX as Istio Sidecar'];
+
   
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
@@ -135,23 +137,32 @@ export default function Dashboard() {
 
   const form1 = (
         <Paper className={fixedHeightPaper}>
+        <Typography color="primary">{items[0]}</Typography>
           <HelmForm schema={tier1schema}  uischema={tier1uischema}/>
         </Paper>
-    );
+  );
 
   const form2 = (
       <Paper className={fixedHeightPaper}>
+        <Typography color="primary">{items[1]}</Typography>
         <HelmForm schema={tier1schema}  uischema={tier1uischema}/>
       </Paper>
-    );
+  );
 
-    const form3 = (
+  const form3 = (
         <Paper className={fixedHeightPaper}>
+          <Typography color="primary">{items[2]}</Typography>
           <HelmForm schema={tier1schema}  uischema={tier1uischema}/>
         </Paper>
-      );
+  );
 
-  const items = ['Citrix ADC in Tier 1', 'Citrix ADC CPX in Tier 2', 'Citrix ADC as Istio Ingress Gateway', 'Citrix ADC CPX as Istio Sidecar'];
+  const form4 = (
+    <Paper className={fixedHeightPaper}>
+      <Typography color="primary">{items[3]}</Typography>
+      <HelmForm schema={tier1schema}  uischema={tier1uischema}/>
+    </Paper>
+);
+
 
   const MainContent = () => {
     switch (itemId) {
@@ -161,6 +172,8 @@ export default function Dashboard() {
         return form2;
       case items[2]:
         return form3;
+      case items[3]:
+        return form4;
       default:
         return form1;
     }
@@ -198,7 +211,7 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        <List><SidebarItems onClick={itemClick}/></List>
+        <List><SidebarItems items={items} onClick={itemClick}/></List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
