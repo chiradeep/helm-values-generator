@@ -117,17 +117,17 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
   const classes = useStyles();
+  const items = ['Citrix ADC in Tier 1', 'CPX in Tier 2', 'Istio Ingress Gateway', 'CPX as Istio Sidecar'];
+
   const [open, setOpen] = React.useState(true);
-  const [itemId, setItemId] = React.useState('Charts');
+  const [itemId, setItemId] = React.useState('Citrix ADC in Tier 1');
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const items = ['Citrix ADC in Tier 1', 'CPX in Tier 2', 'Istio Ingress Gateway', 'CPX as Istio Sidecar'];
 
-  
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   const itemClick = (itemName, e) => {
@@ -135,49 +135,47 @@ export default function Dashboard() {
     setItemId(itemName);
   }
 
-  const form1 = (
-        <Paper className={fixedHeightPaper}>
-        <Typography variant="h5" color="primary">{items[0]}</Typography>
-          <HelmForm schema={tier1schema}  uischema={tier1uischema}/>
-        </Paper>
-  );
+  const [formData] = React.useState({[items[0]]: {}, [items[1]]: {}, [items[2]]: {}, [items[3]]: {}});
+  const [yamlStrs] = React.useState({[items[0]]: '', [items[1]]: '', [items[2]]: '', [items[3]]: ''});
 
-  const form2 = (
-      <Paper className={fixedHeightPaper}>
-        <Typography variant="h5" color="primary">{items[1]}</Typography>
-        <HelmForm schema={tier1schema}  uischema={tier1uischema}/>
-      </Paper>
-  );
+  //let formData  = {[items[0]]: {}, [items[1]]: {}, [items[2]]: {}, [items[3]]: {}};
+  //let yamlStrs  = {[items[0]]: '', [items[1]]: '', [items[2]]: '', [items[3]]: ''};
 
-  const form3 = (
-        <Paper className={fixedHeightPaper}>
-          <Typography variant="h5" color="primary">{items[2]}</Typography>
-          <HelmForm schema={tier1schema}  uischema={tier1uischema}/>
-        </Paper>
-  );
-
-  const form4 = (
-    <Paper className={fixedHeightPaper}>
-      <Typography variant="h5" color="primary">{items[3]}</Typography>
-      <HelmForm schema={tier1schema}  uischema={tier1uischema}/>
-    </Paper>
-);
-
-
-  const MainContent = () => {
-    switch (itemId) {
-      case items[0]:
-        return form1;
-      case items[1]:
-        return form2;
-      case items[2]:
-        return form3;
-      case items[3]:
-        return form4;
-      default:
-        return form1;
-    }
+  const setParentState = (formId, data, yamlStr) => {
+    //setFormData(prevFormData => ({...prevFormData, [formData[formId]]:data}));
+    //setYamlStrs(prevYamlStrs =>({...prevYamlStrs, [prevYamlStrs[formId]]: yamlStr}));
+    //formData = {...formData, [formData[formId]]:data};
+    formData[formId] = data;
+    yamlStrs[formId] = yamlStr;
+    console.log("Form id= " + formId);
+    console.log("Form data= ", formData[formId]);
+    console.log("Yaml: ",  yamlStrs[formId]);
   }
+
+
+const MainContent = ({itemId, formData, yamlStr}) => {
+    return (
+      <Paper className={fixedHeightPaper}>
+        <Typography variant="h5" color="primary">{itemId}</Typography>
+        <HelmForm schema={tier1schema}  
+                uischema={tier1uischema} 
+                formId={itemId}
+                formData={formData} 
+                yamlStr={yamlStr}
+                setParentState={setParentState}/>
+      </Paper>
+    );
+
+  } 
+
+ /* const MainContent = () => {
+    return (
+      <Paper className={fixedHeightPaper}>
+      </Paper>
+    );
+
+  }
+  */
 
   return (
     <div className={classes.root}>
@@ -217,7 +215,12 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container  className={classes.container}>
           <Grid container spacing={3}>
-            <MainContent/>
+            <MainContent
+              itemId={itemId}
+              formData={formData[itemId]}
+              yamlStr={yamlStrs[itemId]}
+              setParentState={setParentState}
+            />
           </Grid>
           <Box pt={4}>
             <Copyright />

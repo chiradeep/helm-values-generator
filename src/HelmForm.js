@@ -16,8 +16,18 @@ const log = (type) => console.log.bind(console, type);
 class HelmForm extends React.Component {
 	constructor(props){
 		super(props);
-		this.state = {formData: {}, yamlStr: ' '};
+		this.state = {formData: {...props.formData}, yamlStr: props.yamlStr};
 		this.toYaml = this.toYaml.bind(this);
+		console.log("constructor: formData", this.props.formData);
+
+	}
+
+	componentDidMount() {
+		console.log("componentDidMount: formData", this.props.formData);
+		console.log("componentDidMount: yamlStr", this.props.yamlStr);
+		console.log("componentDidMount: formId", this.props.formId);
+
+		//this.setState({formData: {...this.props.formData}, yamlStr: this.props.yamlStr});
 	}
 
 	toYaml({formData}) {
@@ -44,8 +54,9 @@ class HelmForm extends React.Component {
 			delete x.exporter;
 		}
 		var yamlStr = yaml.safeDump(x);
-		//console.log(yamlStr);
+		console.log(yamlStr);
 		this.setState({formData: {...formData}, yamlStr: yamlStr});
+		this.props.setParentState(this.props.formId, {...formData}, yamlStr);
 	}
 
 	render() {
