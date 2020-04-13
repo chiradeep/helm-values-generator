@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ab92cb7dc0c2f43050721dff65151307",
+    "revision": "278732739f1d62c3c268cd9f7139fad5",
     "url": "/helm-values-generator/index.html"
   },
   {
