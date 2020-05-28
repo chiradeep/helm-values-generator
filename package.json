@@ -4,10 +4,11 @@
   "private": true,
   "homepage": "https://chiradeep.github.io/helm-values-generator",
   "dependencies": {
+    "@chiradeep/rjsf-semantic-ui": "^2.0.0",
     "@material-ui/core": "^4.9.9",
     "@material-ui/icons": "^4.9.1",
-    "@rjsf/core": "^2.0.0-alpha.6",
-    "@rjsf/material-ui": "^2.0.0-alpha.6",
+    "@rjsf/core": "^2.0.0",
+    "@rjsf/material-ui": "^2.0.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -17,7 +18,9 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "react-syntax-highlighter": "^12.2.1"
+    "react-syntax-highlighter": "^12.2.1",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.88.2"
   },
   "scripts": {
     "start": "react-scripts start",

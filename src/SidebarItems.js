@@ -1,6 +1,7 @@
 import React from 'react';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+
+import { Menu } from 'semantic-ui-react';
+
 
 
 class SidebarItems extends React.Component {
@@ -9,9 +10,9 @@ class SidebarItems extends React.Component {
           <div>
           {this.props.items.map(((item) => {
             return (
-              <ListItem key={item} button onClick={(e) => this.props.onClick(item, e)}>
-                <ListItemText primary={item} />
-              </ListItem>
+              <Menu.Item as='a' key={item} button onClick={(e) => this.props.onClick(item, e)}>
+                {item} 
+              </Menu.Item>
             );
           }))}
           </div>

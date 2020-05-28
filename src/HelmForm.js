@@ -1,13 +1,15 @@
 import React from 'react';
 import './App.css';
 //import Form from '@rjsf/core';
-import Form from "@rjsf/material-ui";
+//import Form from "@rjsf/material-ui";
+import Form from "@chiradeep/rjsf-semantic-ui";
+
 import yaml from 'js-yaml';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import Divider from '@material-ui/core/Divider';
-import Button from '@material-ui/core/Button';
+import { Button } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
+import { Header } from 'semantic-ui-react'
 
-import { Typography, Grid, Box } from '@material-ui/core';
 
 
 const log = (type) => console.log.bind(console, type);
@@ -61,8 +63,8 @@ class HelmForm extends React.Component {
 
 	render() {
 	  return (
-		  <Grid container direction="row" justify="space-around" alignItems="flex-start" spacing={1}>
-		  		<Grid item sm={6}>
+		  <Grid columns={3} divided>
+		  		<Grid.Column width={6}>
 					<Form schema={this.props.schema}
 						  formData={this.state.formData}
 						  liveValidate={true}
@@ -75,19 +77,14 @@ class HelmForm extends React.Component {
       						<Button type="submit" variant="contained" color="primary">Generate values.yaml</Button> 
 						</div>
 					</Form>
-		  		</Grid>
-			    <Divider orientation="vertical" flexItem/>
-				<Grid item sm={5}>
-					<Box p="1.5rem" color="grey">
-						<Typography variant="h5">Values.yaml</Typography>
-						<Divider />
-					</Box>
-					<Box p="1.5rem" >
+		  		</Grid.Column>
+				<Grid.Column width={5}>
+					
+						<Header size="small">Values.yaml</Header>
 						<SyntaxHighlighter language="yaml">
      						 {this.state.yamlStr}
     					</SyntaxHighlighter>
-					</Box>
-				</Grid>
+				</Grid.Column>
 		  </Grid>
 	  );
 	}
