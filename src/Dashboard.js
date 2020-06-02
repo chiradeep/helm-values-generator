@@ -16,14 +16,11 @@ import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'; */
-import {Segment, Item, Container, Header} from 'semantic-ui-react';
-import {Sidebar, Menu, Grid} from 'semantic-ui-react';
+import {Sidebar, Menu, Grid, Segment, Item, Header} from 'semantic-ui-react';
 import SidebarItems from './SidebarItems';
 import HelmForm from './HelmForm';
-import { tier1schema, tier1uischema } from './chart-tier-1';
-import { cpxcicschema, cpxcicuischema } from './cpx-cic';
-
-
+import {tier1schema, tier1uischema} from './chart-tier-1';
+import {cpxcicschema, cpxcicuischema} from './cpx-cic';
 
 function Copyright() {
   return (
@@ -38,11 +35,9 @@ function Copyright() {
   );
 }
 
-
 export default function Dashboard() {
   const items = ['Citrix ADC in Tier 1', 'CPX in Tier 2', 'Istio Ingress Gateway', 'CPX as Istio Sidecar'];
 
-  
   const [formId, setformId] = React.useState('Citrix ADC in Tier 1');
   /*const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -52,9 +47,8 @@ export default function Dashboard() {
     setOpen(false);
   };*/
 
-
   const itemClick = (itemName, e) => {
-    console.log("Clicked on " + itemName);
+    console.log('Clicked on ' + itemName);
     setformId(itemName);
   }
 
@@ -70,9 +64,9 @@ export default function Dashboard() {
     //formData = {...formData, [formData[formId]]:data};
     formData[formId] = data;
     yamlStrs[formId] = yamlStr;
-    console.log("Form id= " + formId);
-    console.log("Form data= ", formData[formId]);
-    console.log("Yaml: ",  yamlStrs[formId]);
+    console.log('Form id= ' + formId);
+    console.log('Form data= ', formData[formId]);
+    console.log('Yaml: ', yamlStrs[formId]);
   }
 
   const schemaForForm = (formId) => {
@@ -100,49 +94,52 @@ export default function Dashboard() {
   }
 
   const MainContent = ({formId, formData, yamlStr}) => {
-      return (
-        <Container>
+    return (
+      <Grid.Row>
+        <Grid.Column>
           <Header size="small" color="primary">{formId}</Header>
-          <HelmForm schema={schemaForForm(formId)}  
-                    uischema={uischemaForForm(formId)} 
+          <HelmForm schema={schemaForForm(formId)}
+                    uischema={uischemaForForm(formId)}
                     formId={formId}
-                    formData={formData} 
+                    formData={formData}
                     yamlStr={yamlStr}
-                    setParentState={setParentState}/>
-        </Container>
-      );
+                    setParentState={setParentState}
+          />
+        </Grid.Column>
+      </Grid.Row>
+    );
 
-    } 
+  }
 
   return (
-    <div>
-      
+    <Sidebar.Pushable as={Segment}>
+
       <Sidebar
-              as={Menu}
-              animation='overlay'
-              icon='labeled'
-              inverted
-              vertical
-              visible={true}
-              width='thin'>
+        as={Menu}
+        animation='push'
+        inverted
+        vertical
+        visible={true}
+        width='wide'
+      >
         <SidebarItems items={items} onClick={itemClick}/>
       </Sidebar>
-      <main >
-        <div />
-        <Container>
-          <Grid container spacing={3}>
-            <MainContent
-              formId={formId}
-              formData={formData[formId]}
-              yamlStr={yamlStrs[formId]}
-              setParentState={setParentState}
-            />
-          </Grid>
-          
-            <Copyright />
-        </Container>
-      </main>
-    </div>
+      <Sidebar.Pusher>
+        <Grid padded>
+          <MainContent
+            formId={formId}
+            formData={formData[formId]}
+            yamlStr={yamlStrs[formId]}
+            setParentState={setParentState}
+          />
+          <Grid.Row>
+            <Grid.Column>
+              <Copyright/>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Sidebar.Pusher>
+    </Sidebar.Pushable>
   );
 }
 
