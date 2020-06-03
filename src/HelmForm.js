@@ -1,9 +1,6 @@
 import React from 'react';
 import './App.css';
-//import Form from '@rjsf/core';
-//import Form from "@rjsf/material-ui";
 import Form from '@chiradeep/rjsf-semantic-ui';
-
 import yaml from 'js-yaml';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import {Button, Header, Grid} from 'semantic-ui-react';
@@ -71,11 +68,11 @@ class HelmForm extends React.Component {
                   onError={log('errors')}
             >
             </Form>
-            <Button type="submit" variant="contained" color="primary">Generate values.yaml</Button>
+            <Button type="submit" >Generate values.yaml</Button>
           </Grid.Column>
           <Grid.Column width={10}>
 
-            <Header size="small">Values.yaml</Header>
+            <Header >Values.yaml</Header>
             <SyntaxHighlighter language="yaml">
               {this.state.yamlStr}
             </SyntaxHighlighter>

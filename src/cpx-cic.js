@@ -1,7 +1,3 @@
-
-
-
-
 export const cpxcicschema = {
   properties: {
 		cpxSettings: {

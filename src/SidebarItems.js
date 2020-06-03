@@ -10,7 +10,7 @@ class SidebarItems extends React.Component {
           <>
           {this.props.items.map(((item) => {
             return (
-              <Menu.Item as='a' key={item} button onClick={(e) => this.props.onClick(item, e)}>
+              <Menu.Item as='a' key={item} onClick={(e) => this.props.onClick(item, e)}>
                 {item} 
               </Menu.Item>
             );

@@ -1,7 +1,3 @@
-
-
-
-
 export const tier1schema = {
   properties: {
 		adcSettings: {

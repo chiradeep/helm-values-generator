@@ -24,9 +24,9 @@ import {cpxcicschema, cpxcicuischema} from './cpx-cic';
 
 function Copyright() {
   return (
-    <Segment color="textSecondary" align="center">
+    <Segment>
       {'Copyright © '}
-      <Item color="inherit" href="https://citrix.com/">
+      <Item href="https://citrix.com/">
         Citrix Systems
       </Item>{' '}
       {new Date().getFullYear()}
@@ -97,7 +97,7 @@ export default function Dashboard() {
     return (
       <Grid.Row>
         <Grid.Column>
-          <Header size="small" color="primary">{formId}</Header>
+          <Header>{formId}</Header>
           <HelmForm schema={schemaForForm(formId)}
                     uischema={uischemaForForm(formId)}
                     formId={formId}
