@@ -1,11 +1,14 @@
 import React from 'react';
 import './App.css';
-import Form from '@chiradeep/rjsf-semantic-ui';
+import { withTheme } from '@rjsf/core';
+import { Theme as SemanticTheme } from '@chiradeep/rjsf-semantic-ui';
+
 import yaml from 'js-yaml';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import {Button, Header, Grid} from 'semantic-ui-react';
 
 const log = (type) => console.log.bind(console, type);
+const Form = withTheme(SemanticTheme);
 
 class HelmForm extends React.Component {
   constructor(props) {
@@ -20,8 +23,6 @@ class HelmForm extends React.Component {
     console.log('componentDidMount: formData', this.props.formData);
     console.log('componentDidMount: yamlStr', this.props.yamlStr);
     console.log('componentDidMount: formId', this.props.formId);
-
-    //this.setState({formData: {...this.props.formData}, yamlStr: this.props.yamlStr});
   }
 
   toYaml({formData}) {
