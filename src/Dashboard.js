@@ -1,21 +1,4 @@
 import React from 'react';
-/* import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Drawer from '@material-ui/core/Drawer';
-import Box from '@material-ui/core/Box';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'; */
 import {Sidebar, Menu, Grid, Segment, Item, Header} from 'semantic-ui-react';
 import SidebarItems from './SidebarItems';
 import HelmForm from './HelmForm';
@@ -24,9 +7,9 @@ import {cpxcicschema, cpxcicuischema} from './cpx-cic';
 
 function Copyright() {
   return (
-    <Segment>
+    <Segment attached={'bottom'} padded style={{marginTop: '2rem'}}>
       {'Copyright © '}
-      <Item href="https://citrix.com/">
+      <Item as={'a'} href="https://citrix.com/">
         Citrix Systems
       </Item>{' '}
       {new Date().getFullYear()}
@@ -95,20 +78,18 @@ export default function Dashboard() {
 
   const MainContent = ({formId, formData, yamlStr}) => {
     return (
+      <>  
+      <Header as={'h2'}>{formId}</Header>
       <Grid.Row>
-        <Grid.Column>
-          <Header>{formId}</Header>
           <HelmForm schema={schemaForForm(formId)}
                     uischema={uischemaForForm(formId)}
-                    formId={formId}
                     formData={formData}
                     yamlStr={yamlStr}
                     setParentState={setParentState}
           />
-        </Grid.Column>
-      </Grid.Row>
+       </Grid.Row>
+        </>
     );
-
   }
 
   return (
@@ -116,8 +97,7 @@ export default function Dashboard() {
 
       <Sidebar
         as={Menu}
-        animation='push'
-        inverted
+        inverted={true}
         vertical
         visible={true}
         width='wide'
@@ -125,19 +105,15 @@ export default function Dashboard() {
         <SidebarItems items={items} onClick={itemClick}/>
       </Sidebar>
       <Sidebar.Pusher>
-        <Grid padded>
+        <Grid padded container>
           <MainContent
             formId={formId}
             formData={formData[formId]}
             yamlStr={yamlStrs[formId]}
             setParentState={setParentState}
           />
-          <Grid.Row>
-            <Grid.Column>
-              <Copyright/>
-            </Grid.Column>
-          </Grid.Row>
         </Grid>
+        <Copyright/>
       </Sidebar.Pusher>
     </Sidebar.Pushable>
   );

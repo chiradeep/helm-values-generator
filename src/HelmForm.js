@@ -56,9 +56,8 @@ class HelmForm extends React.Component {
 
   render() {
     return (
-      <Grid>
-        <Grid.Row>
-          <Grid.Column width={6}>
+      <>
+        <Grid.Column width={8}>
             <Form schema={this.props.schema}
                   formData={this.state.formData}
                   liveValidate={true}
@@ -68,18 +67,16 @@ class HelmForm extends React.Component {
                   onSubmit={this.toYaml}
                   onError={log('errors')}
             >
+            <Button primary type="submit" >Generate values.yaml</Button>
             </Form>
-            <Button type="submit" >Generate values.yaml</Button>
-          </Grid.Column>
-          <Grid.Column width={10}>
-
-            <Header >Values.yaml</Header>
+        </Grid.Column>
+          <Grid.Column width={8} style={{marginTop: '-4rem'}}>
+            <Header as={'h2'}>Values.yaml</Header>
             <SyntaxHighlighter language="yaml">
               {this.state.yamlStr}
             </SyntaxHighlighter>
           </Grid.Column>
-        </Grid.Row>
-      </Grid>
+        </>
     );
   }
 }
