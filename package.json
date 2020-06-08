@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://chiradeep.github.io/helm-values-generator",
   "dependencies": {
-    "@chiradeep/rjsf-semantic-ui": "^2.0.0",
+    "@chiradeep/rjsf-semantic-ui": "2.0.0-alpha.6",
     "@rjsf/core": "^2.0.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
