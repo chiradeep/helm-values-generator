@@ -73,7 +73,7 @@ class HelmForm extends React.Component {
             </Form>
         </Grid.Column>
           <Grid.Column width={9}>
-            <Header dividing as={'h5'}>Values.yaml</Header>
+            <Header dividing as={'h5'} style={{marginTop: 0}}>Values.yaml</Header>
             <SyntaxHighlighter language="yaml">
               {this.state.yamlStr}
             </SyntaxHighlighter>

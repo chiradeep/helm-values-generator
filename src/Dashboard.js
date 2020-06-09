@@ -7,7 +7,7 @@ import {cpxcicschema, cpxcicuischema} from './cpx-cic';
 
 function Copyright() {
   return (
-    <Segment attached={'bottom'} padded style={{marginTop: '2rem'}}>
+    <Segment attached={'bottom'} padded style={{margin: '0rem 1.5rem', border: '0'}}>
       {'Copyright © '}
       <Item as={'a'} href="https://citrix.com/">
         Citrix Systems
@@ -79,7 +79,7 @@ export default function Dashboard() {
   const MainContent = ({formId, formData, yamlStr}) => {
     return (
       <>  
-      <Header as={'h3'}>{formId}</Header>
+     
       <Grid.Row>
           <HelmForm schema={schemaForForm(formId)}
                     uischema={uischemaForForm(formId)}
@@ -93,9 +93,11 @@ export default function Dashboard() {
   }
 
   return (
-    <Sidebar.Pushable as={Segment}>
-
+    <>
+    <Header inverted attached={'top'} as={'h1'} className='mastHead'>Citrix Helm Charts Values Generator</Header>
+    <Sidebar.Pushable attached={'top'} basic as={Segment} style={{marginTop: '0', borderRadius: '0', borderTop: '0', borderBottom: '0'}}>
       <Sidebar
+        style={{top: '-1px'}}
         as={Menu}
         inverted={false}
         vertical
@@ -105,7 +107,8 @@ export default function Dashboard() {
         <SidebarItems items={items} onClick={itemClick}/>
       </Sidebar>
       <Sidebar.Pusher>
-        <Grid padded className='mainlayout'>
+    <Header as={'h3'} attached={'top'} style={{border: '0', margin: '1.5rem 2rem 0 2rem'}}>{formId}</Header>
+        <Grid className='mainlayout'>
           <MainContent
             formId={formId}
             formData={formData[formId]}
@@ -116,6 +119,7 @@ export default function Dashboard() {
         <Copyright/>
       </Sidebar.Pusher>
     </Sidebar.Pushable>
+      </>
   );
 }
 

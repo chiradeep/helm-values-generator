@@ -1,4 +1,4 @@
-/* Color Variables */
+/* CSS/Theme Variables */
 :root {
   /* Font Weights */
   --default-font-weight: normal;
@@ -7,6 +7,7 @@
   --header-color: #333333;
   --sui-description-color: #333333;
   /* Font Sizes */
+  --h1-font-size: 32px;
   --h2-font-size: 32px;
   --h3-font-size: 27px;
   --h5-font-size: 21px;
@@ -19,10 +20,6 @@
   font-size: var(--small-text-font-size);
   color: var(--sui-description-color);
   font-weight: var(--default-font-weight);
-}
-
-.ui.form .grouped.fields {
-  margin-top: 1.5rem;
 }
 
 .ui.form .grouped.fields label {
@@ -53,6 +50,16 @@
 }
 
 /* Headers */
+h1.ui.header.top.attached.mastHead {
+  border: 0;
+  border-radius: 0;
+  padding: 2rem 1.5rem;
+}
+h1.ui.header {
+  font-size: var(--h1-font-size);
+  color: var(--header-color);
+  font-weight: var(--default-font-weight);
+}
 h3.ui.header {
   font-size: var(--h3-font-size);
   color: var(--header-color);
@@ -97,7 +104,10 @@ h5.ui.header.dividing {
 
 /* Grid Overrides */
 .ui.grid.mainlayout {
+  padding: 2rem;
+  margin: 0;
   min-width: 900px;
   max-width: 1440px;
   width: calc(100vw - 270px);
+  /*width: calc(100vw - 270px);*/
 }
