@@ -60,18 +60,18 @@ export const cpxcicschema = {
 export const cpxcicuischema = {
 	cpxSettings: {
 		"nsNamespace": {
-			"ui:help": "Resources created on the CPX will have this prefix in their name"
+			"ui:description": "Resources created on the CPX will have this prefix in their name"
 		},
 		"defaultSSLCert": {
-			"ui:help": "Secret containing the default ceritifcate for SSL vservers"
+			"ui:description": "Secret containing the default ceritifcate for SSL vservers"
 		},
 		"lsPort": {
-			"ui:help": "Specify this only if the ADM license server port has been changed",
+			"ui:description": "Specify this only if the ADM license server port has been changed",
 		}
 	},
 	deploymentSettings: {
 		"license.accept": {
-			"ui:help": "Accept the terms and conditions of the Citrix license. This is mandatory"
+			"ui:description": "Accept the terms and conditions of the Citrix license. This is mandatory"
 		} 
 	}
 }

@@ -70,21 +70,21 @@ export const tier1schema = {
 export const tier1uischema = {
 	adcSettings: {
 		"nsIp" : {
-			"ui:help": "Citrix ADC NSIP/SNIP, SNIP in case of HA (mgmt has to be enabled)"
+			"ui:description": "Citrix ADC NSIP/SNIP, SNIP in case of HA (mgmt has to be enabled)"
 		},
 		"nsNamespace": {
-			"ui:help": "Resources created on the ADC will have this prefix in their name"
+			"ui:description": "Resources created on the ADC will have this prefix in their name"
 		},
 		"defaultSSLCert": {
-			"ui:help": "Secret containing the default ceritifcate for SSL vservers"
-		},
+			"ui:description": "Secret containing the default ceritifcate for SSL vservers"
+		},	
 		"nodeWatch": {
-			"ui:help": "When checked, routes on the Citrix ADC are automatically configured to point to the pod networks on the nodes",
+			"ui:description": "When checked, routes on the Citrix ADC are automatically configured to point to the pod networks on the nodes",
 		}
 	},
 	deploymentSettings: {
 		"license.accept": {
-			"ui:help": "Accept the terms and conditions of the Citrix license. This is mandatory"
+			"ui:description": "Accept the terms and conditions of the Citrix license. This is mandatory"
 		} 
 	}
 }

@@ -1,38 +1,103 @@
-.App {
-  text-align: center;
+/* Color Variables */
+:root {
+  /* Font Weights */
+  --default-font-weight: normal;
+  --bold-font-weight: bold;
+  /* Font Colors */
+  --header-color: #333333;
+  --sui-description-color: #333333;
+  /* Font Sizes */
+  --h2-font-size: 32px;
+  --h3-font-size: 27px;
+  --h5-font-size: 21px;
+  --small-text-font-size: 12px;
+  --field-label-font-size: 12px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Forms */
+.sui-description {
+  font-size: var(--small-text-font-size);
+  color: var(--sui-description-color);
+  font-weight: var(--default-font-weight);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.ui.form .grouped.fields {
+  margin-top: 1.5rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.ui.form .grouped.fields label {
+  font-size: var(--field-label-font-size);
+  font-weight: var(--bold-font-weight);
+  text-transform: uppercase;
 }
 
-.App-link {
-  color: #61dafb;
+/* Validation Messages */
+.sui-description + .ui.red.pointing.above.small.basic.label {
+  top: -1em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ui.red.pointing.above.small.basic.label {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.ui.red.pointing.above.small.basic.label > .ui.bulleted.list {
+  margin-left: 0;
+}
+
+.ui.red.pointing.above.small.basic.label > .ui.bulleted.list .item:before,
+.ui.red.pointing.above.small.basic.label:before,
+.ui.red.pointing.above.small.basic.label:after {
+  display: none;
+}
+
+/* Headers */
+h3.ui.header {
+  font-size: var(--h3-font-size);
+  color: var(--header-color);
+  font-weight: var(--default-font-weight);
+}
+
+h5.ui.header,
+h5.ui.header.dividing {
+  font-size: var(--h5-font-size);
+  color: var(--header-color);
+  font-weight: var(--default-font-weight);
+  border-bottom: 0;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0;
+}
+
+.ui.form.rjsf .grouped.fields .grouped.fields:first-child .ui.header.dividing {
+  margin-top: 0;
+}
+
+/* Buttons in Forms */
+.ui.form .ui.button.primary:last-child {
+  margin-top: 2.5rem;
+}
+
+/* Buttons */
+.ui.button.primary {
+  font-weight: var(--default-font-weight);
+}
+
+/* Sidebar Vertical Menu */
+.ui.wide.left.sidebar,
+.ui.wide.right.sidebar {
+  width: 250px;
+}
+
+.ui.visible.wide.left.sidebar ~ .fixed,
+.ui.visible.wide.left.sidebar ~ .pusher {
+  transform: translate3d(250px, 0, 0);
+}
+
+/* Grid Overrides */
+.ui.grid.mainlayout {
+  min-width: 900px;
+  max-width: 1440px;
+  width: calc(100vw - 270px);
 }

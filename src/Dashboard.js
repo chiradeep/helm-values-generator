@@ -79,7 +79,7 @@ export default function Dashboard() {
   const MainContent = ({formId, formData, yamlStr}) => {
     return (
       <>  
-      <Header as={'h2'}>{formId}</Header>
+      <Header as={'h3'}>{formId}</Header>
       <Grid.Row>
           <HelmForm schema={schemaForForm(formId)}
                     uischema={uischemaForForm(formId)}
@@ -97,7 +97,7 @@ export default function Dashboard() {
 
       <Sidebar
         as={Menu}
-        inverted={true}
+        inverted={false}
         vertical
         visible={true}
         width='wide'
@@ -105,7 +105,7 @@ export default function Dashboard() {
         <SidebarItems items={items} onClick={itemClick}/>
       </Sidebar>
       <Sidebar.Pusher>
-        <Grid padded container>
+        <Grid padded className='mainlayout'>
           <MainContent
             formId={formId}
             formData={formData[formId]}

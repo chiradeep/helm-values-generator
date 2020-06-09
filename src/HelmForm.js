@@ -57,8 +57,10 @@ class HelmForm extends React.Component {
   render() {
     return (
       <>
-        <Grid.Column width={8}>
-            <Form schema={this.props.schema}
+        <Grid.Column width={7}>
+            <Form
+                  schema={this.props.schema}
+                  noHtml5Validate
                   formData={this.state.formData}
                   liveValidate={true}
                   showErrorList={false}
@@ -70,8 +72,8 @@ class HelmForm extends React.Component {
             <Button primary type="submit" >Generate values.yaml</Button>
             </Form>
         </Grid.Column>
-          <Grid.Column width={8} style={{marginTop: '-4rem'}}>
-            <Header as={'h2'}>Values.yaml</Header>
+          <Grid.Column width={9}>
+            <Header dividing as={'h5'}>Values.yaml</Header>
             <SyntaxHighlighter language="yaml">
               {this.state.yamlStr}
             </SyntaxHighlighter>
