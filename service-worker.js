@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/helm-values-generator/precache-manifest.ed939d0c0bd8e723206c94b8eeb49267.js"
+  "/helm-values-generator/precache-manifest.7ea62b66757e5da62d4a63a56cee125c.js"
 );
 
 self.addEventListener('message', (event) => {
