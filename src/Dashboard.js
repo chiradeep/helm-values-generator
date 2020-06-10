@@ -1,13 +1,13 @@
 import React from 'react';
-import {Sidebar, Menu, Grid, Segment, Item, Header} from 'semantic-ui-react';
 import SidebarItems from './SidebarItems';
+import {Sidebar, Menu, Grid, Segment, Item, Header} from 'semantic-ui-react';
 import HelmForm from './HelmForm';
 import {tier1schema, tier1uischema} from './chart-tier-1';
 import {cpxcicschema, cpxcicuischema} from './cpx-cic';
 
 function Copyright() {
   return (
-    <Segment attached={'bottom'} padded style={{margin: '0rem 1.5rem', border: '0'}}>
+    <Segment attached={'bottom'} black basic padded className='ut_border_none ut_fcolor_inverted' style={{marginLeft: '1.4rem'}}>
       {'Copyright © '}
       <Item as={'a'} href="https://citrix.com/">
         Citrix Systems
@@ -97,9 +97,9 @@ export default function Dashboard() {
     <Header inverted attached={'top'} as={'h1'} className='mastHead'>Citrix Helm Charts Values Generator</Header>
     <Sidebar.Pushable attached={'top'} basic as={Segment} style={{marginTop: '0', borderRadius: '0', borderTop: '0', borderBottom: '0'}}>
       <Sidebar
-        style={{top: '-1px'}}
+        // style={{top: '-1px'}}
         as={Menu}
-        inverted={false}
+        inverted={true}
         vertical
         visible={true}
         width='wide'
@@ -107,7 +107,7 @@ export default function Dashboard() {
         <SidebarItems items={items} onClick={itemClick}/>
       </Sidebar>
       <Sidebar.Pusher>
-    <Header as={'h3'} attached={'top'} style={{border: '0', margin: '1.5rem 2rem 0 2rem'}}>{formId}</Header>
+    <Header className='titleHeader ut_border_none ut_fcolor_inverted' as={'h3'} attached={'top'} >{formId}</Header>
         <Grid className='mainlayout'>
           <MainContent
             formId={formId}

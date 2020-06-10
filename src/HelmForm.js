@@ -69,11 +69,11 @@ class HelmForm extends React.Component {
                   onSubmit={this.toYaml}
                   onError={log('errors')}
             >
-            <Button primary type="submit" >Generate values.yaml</Button>
+            <Button inverted primary type="submit" >Generate values.yaml</Button>
             </Form>
         </Grid.Column>
           <Grid.Column width={9}>
-            <Header dividing as={'h5'} style={{marginTop: 0}}>Values.yaml</Header>
+            <Header dividing as={'h5'} inverted style={{marginTop: 0}}>Values.yaml</Header>
             <SyntaxHighlighter language="yaml">
               {this.state.yamlStr}
             </SyntaxHighlighter>
