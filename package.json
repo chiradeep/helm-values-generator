@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://chiradeep.github.io/helm-values-generator",
   "dependencies": {
+    "@babel/runtime": "^7.10.2",
     "@chiradeep/rjsf-semantic-ui": "2.0.0-alpha.6",
     "@rjsf/core": "^2.0.0",
     "@testing-library/jest-dom": "^4.2.4",
@@ -14,7 +15,6 @@
     "js-yaml": "^3.13.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-jsonschema-form-semanticui": "^1.0.3",
     "react-scripts": "3.4.1",
     "react-syntax-highlighter": "^12.2.1",
     "semantic-ui-css": "^2.4.1",

@@ -19,7 +19,7 @@ export const tier1schema = {
 			title: "Deployment Settings",
 			properties: {
 				'kubernetesURL': {type: "string", title: "Kubernetes API-server URL", format:"url"},
-				'license.accept': {type: "boolean", title: "Accept License", default: false},
+				'license.accept': {type: "boolean", title: "Accept License", default: true},
 				'ingressClass': {type: "string", title: "Ingress Class for the controller"},
 				'logLevel': {type: "string", default: "DEBUG", title: "Ingress Controller Log Level", enum:["DEBUG", "INFO", "WARN", "ERROR", "TRACE"]},
 			}

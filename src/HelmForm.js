@@ -5,6 +5,7 @@ import { Theme as SemanticTheme } from '@chiradeep/rjsf-semantic-ui';
 
 import yaml from 'js-yaml';
 import SyntaxHighlighter from 'react-syntax-highlighter';
+import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import {Button, Header, Grid} from 'semantic-ui-react';
 
 const log = (type) => console.log.bind(console, type);
@@ -74,7 +75,7 @@ class HelmForm extends React.Component {
         </Grid.Column>
           <Grid.Column width={9}>
             <Header dividing as={'h5'} inverted style={{marginTop: 0}}>Values.yaml</Header>
-            <SyntaxHighlighter language="yaml">
+            <SyntaxHighlighter language="yaml" style={a11yDark}>
               {this.state.yamlStr}
             </SyntaxHighlighter>
           </Grid.Column>
