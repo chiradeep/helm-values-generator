@@ -3,48 +3,49 @@ export const ingressschema = {
         metadata: {
             type: "object",
             title: "Ingress Metadata",
-            required: ["metadata.name"],
+            required: ["name"],
             properties: {
                 "apiVersion" : {type: "string", default: "extensions/v1beta1"},
                 "kind": {type: "string", default: "Ingress"},
-                "metadata.name": {type: "string", title: "Ingress Name"},
-                "metadata.namespace": {type: "string", title: "Namespace", default: "default"}
+                "name": {type: "string", title: "Ingress Name"},
+                "namespace": {type: "string", title: "Namespace", default: "default"}
             }
         },
 		"spec": {
             type: "object",
             properties: {
-                "spec.rules": {
+                "rules": {
 			    type: "array",
-                title: "Rules",
 			    items: {
                     type: "object",
                     properties : {
                         "host": {type: "string"},
                         "http": {
                             type: "object",
-                           properties: {
-                              type: "array",
-                              name: "paths",
-                              items: {
-                                type: "object",
-                                properties: {
-                                    "backend": {
-                                        type: "object",
-                                        properties: {
-                                            "serviceName": {type: "string"},
-                                            "servicePort": {type: "number"}
-                                        }
+                            properties: {
+                              "paths" : {
+                                type: "array",
+                                items: {
+                                     type: "object",
+                                     properties: {
+                                        "backend": {
+                                            type: "object",
+                                            properties: {
+                                                "serviceName": {type: "string"},
+                                                "servicePort": {type: "number"}
+                                            },
+                                        },
+                                        "path": {type: "string"},
+                                        "required": ["backend"]                                  
+                                        },
                                     },
-                                    "path": {type: "string"}                                    
                                 },
-                                "required": ["backend"]
                             }
+                            
                         }
                     }
                 },
             }
-            },
             },
 		},
 		labelsAndAnnotations: {
@@ -70,6 +71,13 @@ export const ingressschema = {
 };
 
 export const ingressuischema = {
+    spec: {
+        "ui:widget": "hidden",
+        "rules": {
+            "ui:widget": "hidden",
+            "ui:order": ["host", "http"]
+        }
+    },
     metadata: {
     "apiVersion": {"ui:widget": "hidden"},
     "kind" : {"ui:widget": "hidden"}

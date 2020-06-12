@@ -27,9 +27,9 @@ class HelmForm extends React.Component {
   }
 
   toYaml({formData}) {
-    //console.log({formData});
+    console.log({formData});
 
-    var x = {};
+    /*var x = {};
     for (let group in formData) {
       for (let k in formData[group]) {
         var splits = k.split('.'); //e.g., exporter.ports.containerPorts
@@ -48,8 +48,8 @@ class HelmForm extends React.Component {
     }
     if (formData.exporterSettings && !formData.exporterSettings['exporter.required']) {
       delete x.exporter;
-    }
-    var yamlStr = yaml.safeDump(x);
+    }*/
+    var yamlStr = yaml.safeDump(formData, {'sortKeys': true});
     console.log(yamlStr);
     this.setState({formData: {...formData}, yamlStr: yamlStr});
     this.props.setParentState(this.props.formId, {...formData}, yamlStr);
