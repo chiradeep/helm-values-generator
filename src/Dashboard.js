@@ -4,6 +4,8 @@ import {Sidebar, Menu, Grid, Segment, Item, Header} from 'semantic-ui-react';
 import HelmForm from './HelmForm';
 import {tier1schema, tier1uischema} from './chart-tier-1';
 import {cpxcicschema, cpxcicuischema} from './cpx-cic';
+import {ingressschema, ingressuischema} from './ingress';
+
 
 function Copyright() {
   return (
@@ -19,7 +21,7 @@ function Copyright() {
 }
 
 export default function Dashboard() {
-  const items = ['Citrix ADC in Tier 1', 'CPX in Tier 2', 'Istio Ingress Gateway', 'CPX as Istio Sidecar'];
+  const items = ['Citrix ADC in Tier 1', 'CPX in Tier 2', 'Istio Ingress Gateway', 'CPX as Istio Sidecar', 'Ingress'];
 
   const [formId, setformId] = React.useState('Citrix ADC in Tier 1');
   /*const [open, setOpen] = React.useState(true);
@@ -35,8 +37,8 @@ export default function Dashboard() {
     setformId(itemName);
   }
 
-  const [formData] = React.useState({[items[0]]: {}, [items[1]]: {}, [items[2]]: {}, [items[3]]: {}});
-  const [yamlStrs] = React.useState({[items[0]]: '', [items[1]]: '', [items[2]]: '', [items[3]]: ''});
+  const [formData] = React.useState({[items[0]]: {}, [items[1]]: {}, [items[2]]: {}, [items[3]]: {}, [items[4]]: {}});
+  const [yamlStrs] = React.useState({[items[0]]: '', [items[1]]: '', [items[2]]: '', [items[3]]: '', [items[4]]: ''});
 
   //let formData  = {[items[0]]: {}, [items[1]]: {}, [items[2]]: {}, [items[3]]: {}};
   //let yamlStrs  = {[items[0]]: '', [items[1]]: '', [items[2]]: '', [items[3]]: ''};
@@ -59,6 +61,8 @@ export default function Dashboard() {
         return tier1schema;
       case items[1]:
         return cpxcicschema;
+      case items[4]:
+        return ingressschema;
       default:
         return tier1schema;
     }
@@ -71,6 +75,8 @@ export default function Dashboard() {
         return tier1uischema;
       case items[1]:
         return cpxcicuischema;
+      case items[4]:
+        return ingressuischema;
       default:
         return tier1uischema;
     }

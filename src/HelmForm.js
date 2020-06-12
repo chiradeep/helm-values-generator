@@ -46,7 +46,7 @@ class HelmForm extends React.Component {
         }
       }
     }
-    if (!formData.exporterSettings['exporter.required']) {
+    if (formData.exporterSettings && !formData.exporterSettings['exporter.required']) {
       delete x.exporter;
     }
     var yamlStr = yaml.safeDump(x);
