@@ -16,6 +16,7 @@ export const ingressschema = {
                         "properties": {
                             "annotation": {
                                 type: "string",
+                                title: "annotation",
                                 "enum": [
                                     "ingress.citrix.com/frontend-ip",
                                     "ingress.citrix.com/secure-port",

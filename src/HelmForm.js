@@ -59,7 +59,11 @@ class HelmForm extends React.Component {
 
       if (formData["metadata"] && formData["metadata"]["annotations"]) {
           formData["metadata"]["annotations"].forEach(function (item, index, array) {
-              x["metadata"]["annotations"][item["annotation"]] = item["value"];
+            var value = Number(item["value"]);
+            if (isNaN(value)) {
+                value = item["value"];
+            }
+            x["metadata"]["annotations"][item["annotation"]] = value;
           })
       }
       var yamlStr = yaml.safeDump(x, { sortKeys: true, skipInvalid: true });
