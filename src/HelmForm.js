@@ -52,8 +52,21 @@ class HelmForm extends React.Component {
 		}
 		if (!formData.exporterSettings['exporter.required']) {
 			delete x.exporter;
-		}*/
-		var yamlStr = yaml.safeDump(formData, {sortKeys: true, skipInvalid: true });
+        }*/
+        var x = JSON.parse(JSON.stringify(formData));
+        if (x["spec"] && x["spec"]["backend"] && Object.entries(x["spec"]["backend"]).length === 0) {
+            delete x["spec"]["backend"];
+        }
+        if (x["metadata"] && x["metadata"]["annotations"]) {
+            x["metadata"]["annotations"] = {};
+        }
+
+       if (formData["metadata"] && formData["metadata"]["annotations"]){
+           formData["metadata"]["annotations"].forEach(function(item, index, array){
+             x["metadata"]["annotations"][item["annotation"]] = item["value"];
+           })
+       }
+		var yamlStr = yaml.safeDump(x, {sortKeys: true, skipInvalid: true });
 		console.log(yamlStr);
 		this.setState({formData: {...formData}, yamlStr: yamlStr});
 		this.props.setParentState(this.props.formId, {...formData}, yamlStr);

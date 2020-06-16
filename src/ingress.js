@@ -8,7 +8,31 @@ export const ingressschema = {
             required: ["name"],
             properties: {
                 "name": { type: "string", title: "Ingress Name" },
-                "namespace": { type: "string", title: "Namespace", default: "default" }
+                "namespace": { type: "string", title: "Namespace", default: "default" },
+                "annotations": {
+                    "type": "array",
+                    "items": {
+                        type: "object",
+                        "properties": {
+                            "annotation": {
+                                type: "string",
+                                "enum": [
+                                    "ingress.citrix.com/frontend-ip",
+                                    "ingress.citrix.com/secure-port",
+                                    "ingress.citrix.com/insecure-port",
+                                    "ingress.citrix.com/insecure-termination",
+                                    "ingress.citrix.com/secure-backend",
+                                    "kubernetes.io/ingress.class",
+                                    "ingress.citrix.com/secure-service-type",
+                                    "ingress.citrix.com/insecure-service-type",
+                                    "ingress.citrix.com/path-match-method",
+                                    "ingress.citrix.com/deployment",    
+                                ]
+                            },
+                            "value": {type: "string"}
+                        }
+                    },
+                }
             }
         },
         "spec": {
@@ -21,7 +45,6 @@ export const ingressschema = {
                         "serviceName": { type: "string" },
                         "servicePort": { type: "number" }
                     },
-                    default: {}
                 },
                 "rules": {
                     type: "array",
@@ -79,8 +102,18 @@ export const ingressschema = {
 };
 
 export const ingressuischema = {
+    "metadata": {
+        "annotations": {
+            "ui:options": {
+                orderable: false
+            },
+        },
+    },
     "spec": {
         "rules": {
+            "ui:options": {
+                orderable: false
+            },
             items: {
                 "host": {"ui:placeholder": "foo.com"}
             }

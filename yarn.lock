@@ -1257,7 +1257,7 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@rjsf/core@^2.0.0-alpha.6":
+"@rjsf/core@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@rjsf/core/-/core-2.0.2.tgz#b6fdbcd730711ee0f985c7940f5b4f61ac4da77c"
   integrity sha512-2QpWwhc9epc37G8K0jsFfjgjooPSq7zjqvtoixuHhYBTc3ixYcmSWmzNbt/MtTvMvt1hZHXZTVQeXYcGjqXgIQ==
@@ -1274,7 +1274,7 @@
     react-is "^16.9.0"
     shortid "^2.2.14"
 
-"@rjsf/material-ui@^2.0.0-alpha.6":
+"@rjsf/material-ui@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@rjsf/material-ui/-/material-ui-2.0.2.tgz#fb4351d20eec70b0de12079eac6f3db2ad028971"
   integrity sha512-pZb5Kmp6iFQhrUEY9fIPxmhGSAMQg2xaqGBuCcYfpfXb49B3vvexuI5zO7jkEmYLsTz2frF1mu0Cj0uLR+9SeA==
