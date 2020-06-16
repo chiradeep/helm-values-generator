@@ -1,85 +1,124 @@
 export const ingressschema = {
-  properties: {
+    properties: {
+        "apiVersion": { type: "string", default: "extensions/v1beta1" },
+        "kind": { type: "string", default: "Ingress" },
         metadata: {
             type: "object",
             title: "Ingress Metadata",
             required: ["name"],
             properties: {
-                "apiVersion" : {type: "string", default: "extensions/v1beta1"},
-                "kind": {type: "string", default: "Ingress"},
-                "name": {type: "string", title: "Ingress Name"},
-                "namespace": {type: "string", title: "Namespace", default: "default"}
+                "name": { type: "string", title: "Ingress Name" },
+                "namespace": { type: "string", title: "Namespace", default: "default" },
+                "annotations": {
+                    "type": "array",
+                    "items": {
+                        type: "object",
+                        "properties": {
+                            "annotation": {
+                                type: "string",
+                                "enum": [
+                                    "ingress.citrix.com/frontend-ip",
+                                    "ingress.citrix.com/secure-port",
+                                    "ingress.citrix.com/insecure-port",
+                                    "ingress.citrix.com/insecure-termination",
+                                    "ingress.citrix.com/secure-backend",
+                                    "kubernetes.io/ingress.class",
+                                    "ingress.citrix.com/secure-service-type",
+                                    "ingress.citrix.com/insecure-service-type",
+                                    "ingress.citrix.com/path-match-method",
+                                    "ingress.citrix.com/deployment",    
+                                ]
+                            },
+                            "value": {type: "string"}
+                        }
+                    },
+                }
             }
         },
-		"spec": {
+        "spec": {
             type: "object",
             properties: {
-                "rules": {
-			    type: "array",
-			    items: {
+                "backend": {
                     type: "object",
-                    properties : {
-                        "host": {type: "string"},
-                        "http": {
-                            type: "object",
-                            properties: {
-                              "paths" : {
-                                type: "array",
-                                items: {
-                                     type: "object",
-                                     properties: {
-                                        "backend": {
+                    description: "Default backend when no rules match (optional)",
+                    properties: {
+                        "serviceName": { type: "string" },
+                        "servicePort": { type: "number" }
+                    },
+                },
+                "rules": {
+                    type: "array",
+                    items: {
+                        type: "object",
+                        properties: {
+                            "host": { type: "string" },
+                            "http": {
+                                type: "object",
+                                properties: {
+                                    "paths": {
+                                        type: "array",
+                                        items: {
                                             type: "object",
                                             properties: {
-                                                "serviceName": {type: "string"},
-                                                "servicePort": {type: "number"}
+                                                "backend": {
+                                                    type: "object",
+                                                    properties: {
+                                                        "serviceName": { type: "string" },
+                                                        "servicePort": { type: "number" }
+                                                    },
+                                                },
+                                                "path": { type: "string" },
+                                                "required": ["backend"]
                                             },
                                         },
-                                        "path": {type: "string"},
-                                        "required": ["backend"]                                  
-                                        },
                                     },
-                                },
+                                }
+
                             }
-                            
+                        }
+                    },
+                },
+                tls: {
+                    type: "array",
+                    items: {
+                        type: "object",
+                        properties: {
+                            "hosts": {
+                                type: "array",
+                                items: {
+                                    type: "string"
+                                }
+                            },
+                            "secretName": {
+                                type: "string"
+                            }
                         }
                     }
-                },
-            }
+                }
             },
-		},
-		labelsAndAnnotations: {
-			type: "object",
-			title: "Labels and Annotations",
-			properties: {
-				'kubernetesURL': {type: "string", title: "Kubernetes API-server URL", format:"url"},
-				'license.accept': {type: "boolean", title: "Accept License", default: true},
-				'ingressClass': {type: "string", title: "Ingress Class for the controller"},
-				'logLevel': {type: "string", default: "DEBUG", title: "Ingress Controller Log Level", enum:["DEBUG", "INFO", "WARN", "ERROR", "TRACE"]},
-			}
-		},
-		sslSettings: {
-			type: "object",
-			title: "SSL/TLS Certificates",
-			properties: {
-				'cic.image': {type: "string", title: "Citrix Ingress Controller Image", default:"quay.io/citrix/citrix-k8s-ingress-controller:1.7.6"},
-				'cic.pullpolicy': {type: "string", default: "IfNotPresent", title: "Image Pull Policy", enum: ["Always", "IfNotPresent", "Never"]}
-			}
-		}
-		
-	},
+        },
+
+    },
 };
 
 export const ingressuischema = {
-    spec: {
-        "ui:widget": "hidden",
+    "metadata": {
+        "annotations": {
+            "ui:options": {
+                orderable: false
+            },
+        },
+    },
+    "spec": {
         "rules": {
-            "ui:widget": "hidden",
-            "ui:order": ["host", "http"]
+            "ui:options": {
+                orderable: false
+            },
+            items: {
+                "host": {"ui:placeholder": "foo.com"}
+            }
         }
     },
-    metadata: {
-    "apiVersion": {"ui:widget": "hidden"},
-    "kind" : {"ui:widget": "hidden"}
-    }
+    "apiVersion": {"ui:disabled": true},
+    "kind" : {"ui:disabled": true}
 }
