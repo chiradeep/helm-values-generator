@@ -21,6 +21,8 @@ import HelmForm from './HelmForm';
 import { tier1schema, tier1uischema } from './chart-tier-1';
 import { cpxcicschema, cpxcicuischema } from './cpx-cic';
 import {ingressschema, ingressuischema} from './ingress';
+import {contentroutingschema, contentroutinguischema} from './contentrouting';
+
 
 
 
@@ -121,8 +123,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
   const classes = useStyles();
-  const items = ['Citrix ADC in Tier 1', 'CPX in Tier 2', 'Istio Ingress Gateway', 'CPX as Istio Sidecar', 'Ingress'];
-
+  const items = ['Citrix ADC in Tier 1',
+        'CPX in Tier 2',
+        'Istio Ingress Gateway',
+        'CPX as Istio Sidecar',
+        'Ingress',
+        'Content Routing'];
   const [open, setOpen] = React.useState(true);
   const [formId, setformId] = React.useState('Citrix ADC in Tier 1');
   const handleDrawerOpen = () => {
@@ -139,11 +145,22 @@ export default function Dashboard() {
     setformId(itemName);
   }
 
-
-  const [formData] = React.useState({[items[0]]: {}, [items[1]]: {}, [items[2]]: {}, [items[3]]: {}, [items[4]]: {}});
-  const [yamlStrs] = React.useState({[items[0]]: '', [items[1]]: '', [items[2]]: '', [items[3]]: '', [items[4]]: ''});
-
-
+  const [formData] = React.useState({
+    [items[0]]: {},
+    [items[1]]: {},
+    [items[2]]: {},
+    [items[3]]: {},
+    [items[4]]: {},
+    [items[5]]: {},
+});
+const [yamlStrs] = React.useState({
+    [items[0]]: '',
+    [items[1]]: '',
+    [items[2]]: '',
+    [items[3]]: '',
+    [items[4]]: '',
+    [items[5]]: ''
+});
 
   //let formData  = {[items[0]]: {}, [items[1]]: {}, [items[2]]: {}, [items[3]]: {}};
   //let yamlStrs  = {[items[0]]: '', [items[1]]: '', [items[2]]: '', [items[3]]: ''};
@@ -168,24 +185,29 @@ export default function Dashboard() {
         return cpxcicschema;
       case items[4]:
         return ingressschema;
+      case items[5]:
+        return contentroutingschema;
       default:
         return tier1schema;
     }
   }
 
-  const uischemaForForm = (formId) => {
-    //TODO
-    switch (formId) {
-      case items[0]:
-        return tier1uischema;
-      case items[1]:
-        return cpxcicuischema;
-      case items[4]:
-        return ingressuischema;
-      default:
-        return tier1uischema;
+    const uischemaForForm = (formId) => {
+        //TODO
+        switch (formId) {
+            case items[0]:
+                return tier1uischema;
+            case items[1]:
+                return cpxcicuischema;
+            case items[4]:
+                return ingressuischema;
+            case items[5]:
+                return contentroutinguischema;
+            default:
+                return tier1uischema;
     }
   }
+  
 
   const MainContent = ({formId, formData, yamlStr}) => {
       return (

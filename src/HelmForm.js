@@ -66,7 +66,7 @@ class HelmForm extends React.Component {
              x["metadata"]["annotations"][item["annotation"]] = item["value"];
            })
        }
-		var yamlStr = yaml.safeDump(x, {sortKeys: true, skipInvalid: true });
+		var yamlStr = yaml.safeDump(x, {skipInvalid: true });
 		console.log(yamlStr);
 		this.setState({formData: {...formData}, yamlStr: yamlStr});
 		this.props.setParentState(this.props.formId, {...formData}, yamlStr);
