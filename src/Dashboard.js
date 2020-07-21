@@ -7,7 +7,7 @@ import {cpxcicschema, cpxcicuischema} from './cpx-cic';
 
 function Copyright() {
   return (
-    <Segment attached={'bottom'} black basic padded className='ut_border_none ut_fcolor_inverted' style={{marginLeft: '1.4rem'}}>
+    <Segment attached={'bottom'} black basic padded className='ut_border_none' style={{marginLeft: '1.4rem'}}>
       {'Copyright © '}
       <Item as={'a'} href="https://citrix.com/">
         Citrix Systems
@@ -99,7 +99,7 @@ export default function Dashboard() {
       <Sidebar
         // style={{top: '-1px'}}
         as={Menu}
-        inverted={true}
+        inverted={false}
         vertical
         visible={true}
         width='wide'
@@ -107,7 +107,7 @@ export default function Dashboard() {
         <SidebarItems items={items} onClick={itemClick}/>
       </Sidebar>
       <Sidebar.Pusher>
-    <Header className='titleHeader ut_border_none ut_fcolor_inverted' as={'h3'} attached={'top'} >{formId}</Header>
+    <Header className='titleHeader ut_border_none' as={'h3'} attached={'top'} >{formId}</Header>
         <Grid className='mainlayout'>
           <MainContent
             formId={formId}
