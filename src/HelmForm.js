@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { withTheme } from '@rjsf/core';
-import { Theme as SemanticTheme } from '@chiradeep/rjsf-semantic-ui';
+import { Theme as SemanticTheme } from '@rjsf/semantic-ui';
 
 import yaml from 'js-yaml';
 import SyntaxHighlighter from 'react-syntax-highlighter';

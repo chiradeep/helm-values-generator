@@ -891,9 +891,9 @@
     regenerator-runtime "^0.13.4"
 
 "@babel/runtime-corejs2@^7.9.2":
-  version "7.10.2"
-  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs2/-/runtime-corejs2-7.10.2.tgz#532f20b839684615f97e9f700f630e995efed426"
-  integrity sha512-ZLwsFnNm3WpIARU1aLFtufjMHsmEnc8TjtrfAjmbgMbeoyR+LuQoyESoNdTfeDhL6IdY12SpeycXMgSgl8XGXA==
+  version "7.10.5"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs2/-/runtime-corejs2-7.10.5.tgz#8daa1ceccc0468e5c2e15f124e3f51c2b3033b49"
+  integrity sha512-LJwyb1ac//Jr2zrGTTaNJhrP1wYCgVw9rzHbQPogKXCTLQ60EEWgeNtuqs6cLsq64O557SYzziCrOxNp0rRi8w==
   dependencies:
     core-js "^2.6.5"
     regenerator-runtime "^0.13.4"
@@ -974,15 +974,6 @@
     "@babel/helper-validator-identifier" "^7.9.0"
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
-
-"@chiradeep/rjsf-semantic-ui@2.0.0-alpha.6":
-  version "2.0.0-alpha.6"
-  resolved "https://npm.pkg.github.com/download/@chiradeep/rjsf-semantic-ui/2.0.0-alpha.6/e8844bf7dfeae2f5a79410ed9b6ee9405099c03d033d4a59c32e2e8d53912238#bb2cf4c7118c97cbd13a0c008444fde44c1134d0"
-  integrity sha512-2i+xN0LuGSk2mHUgJru/XRQnUKLDMhEuNxaiwZZ32Z7AcyF5kXUoNx1qCkEY310sWx4OTHjic8oDOQawr12wPA==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.9.2"
-    semantic-ui-css "^2.4.1"
-    semantic-ui-react "^0.87.3"
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
@@ -1221,6 +1212,15 @@
     react-app-polyfill "^1.0.4"
     react-is "^16.9.0"
     shortid "^2.2.14"
+
+"@rjsf/semantic-ui@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@rjsf/semantic-ui/-/semantic-ui-2.2.1.tgz#ac63b62b739a12870c6a481841624d3af0759a05"
+  integrity sha512-LFmRXYVqgvkCVJThb/B5GIvkLy+WweCxRkwlxkihe7oN6id2IRn576D6K2OxSb699C5FVhr/EHcqkB3e2RVVpw==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.9.2"
+    semantic-ui-css "^2.4.1"
+    semantic-ui-react "^0.87.3"
 
 "@semantic-ui-react/event-stack@^3.1.0":
   version "3.1.1"
