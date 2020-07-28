@@ -1,5 +1,5 @@
 import React from 'react';
-import { Accordion, Menu, Header } from 'semantic-ui-react';
+import { Accordion, Menu } from 'semantic-ui-react';
 
 
 
@@ -18,23 +18,27 @@ class SidebarItems extends React.Component {
         const { activeIndex } = this.state;
         var i = 0;
         return (
-            <Accordion as={Menu} vertical secondary fluid exclusive={false}>
+            <Accordion as={Menu} vertical secondary fluid exclusive={false} className="global-left-nav">
                 {this.props.config.map(((cfg) => {
                     i++;
                     return (
                     <Menu.Item position='left'>
                         <Accordion.Title
                             active={activeIndex === i}
-                            content={<Header as='h4'>{cfg.title}</Header>}
+                            content={<span>{cfg.title}</span>}
                             index={i}
                             onClick={this.handleClick}
                             left
                         />
-                        {cfg.items.map(((item) => {
-                            return (
-                                <Accordion.Content active={activeIndex === i} content={item} />
-                            );
-                        }))}
+                        {cfg.items && 
+                            <Accordion.Content active={activeIndex === i}>
+                                {cfg.items.map(((item) => {
+                                    return (
+                                        <Menu.Item>{item}</Menu.Item>
+                                    );
+                                }))}
+                            </Accordion.Content>
+                        }
                     </Menu.Item>
                     );
                 }))}
